@@ -36,7 +36,7 @@ afterEach(() => {
 })
 ```
 
-### also export all api from [@testing-library/dom](https://testing-library.com/docs/dom-testing-library/intro) that are binded to the target.
+### also export all api from [@testing-library/dom](https://testing-library.com/docs/dom-testing-library/intro)
 
 ## Demo
 
