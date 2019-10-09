@@ -1,31 +1,44 @@
 import {getQueriesForElement, prettyDOM} from '@testing-library/dom'
-import { component as tagComponent, RiotComponent } from 'riot'
+import {component as tagComponent, RiotComponent} from 'riot'
+
 export * from '@testing-library/dom'
 
 interface renderOptions {
+  container?: HTMLElement,
   target?: HTMLElement,
   [key: string]: any
 }
 
-type Container = { target: HTMLElement, component: RiotComponent<any, any> };
+type Container = {
+  target: HTMLElement,
+  component: RiotComponent<any, any>,
+};
 
-const mountedContainers : Set<Container> = new Set();
+const mountedContainers : Map<HTMLElement,Container> = new Map();
 
 export const render = (Component, {
-  target = document.body.appendChild(document.createElement('div')),
+  container = document.body,
+  target = container.appendChild(document.createElement('div')),
   ...options
 } : renderOptions = {}) => {
-  const component = tagComponent(Component)(target, options);
-
-  const container = {target, component};
-
-  mountedContainers.add(container);
-
+  const ui = tagComponent(Component);
+  let component = ui(target, options);
+  mountedContainers.set(target, {target, component});
   return {
-    component,
-    debug: (el = document.body) => console.log(prettyDOM(el)),
-    container: document.body,
-    unmount: () => cleanupAtContainer(container),
+    get component() {
+      return component
+    },
+    debug: (el = container) => console.log(prettyDOM(el)),
+    container,
+    unmount: () => cleanupAtContainer({ target, component}),
+    rerender: (options) => {
+      if(component) {
+        component.unmount(true);
+      }
+      const newComponent = ui(target, options);
+      mountedContainers.set(target, { target, component: newComponent, x: 1 })
+      component = newComponent
+    },
     ...getQueriesForElement(target),
   }
 }
@@ -36,7 +49,7 @@ const cleanupAtContainer = (container: Container) => {
   if(target.parentNode) {
     target.parentNode.removeChild(target);
   }
-  mountedContainers.delete(container)
+  mountedContainers.delete(target)
 }
 
 export const cleanup = () => {
