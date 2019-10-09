@@ -25,12 +25,11 @@ jobs:
       env:
         CI: true
     - name: Upload coverage to Codecov
-    - uses: actions/checkout@master
-    - uses: codecov/codecov-action@v1.0.2
+      uses: codecov/codecov-action@v1.0.2
       with:
         token: ${{secrets.CODECOV_TOKEN}}
-    - name: release
-    - uses: codfish/semantic-release-action@master
+    - name: Eelease
+      uses: codfish/semantic-release-action@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
