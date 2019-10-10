@@ -5,6 +5,7 @@
 [![NPM](https://img.shields.io/npm/v/riot-testing-library.svg)](https://www.npmjs.com/package/riot-testing-library)
 [![license](https://badgen.net/badge/license/MIT/blue)](https://github.com/ariesjia/riot-testing-library/blob/master/LICENSE)
 [![codecov](https://codecov.io/gh/ariesjia/riot-testing-library/branch/master/graph/badge.svg)](https://codecov.io/gh/ariesjia/riot-testing-library)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d58d5b16adaf9a87c8df/maintainability)](https://codeclimate.com/github/ariesjia/riot-testing-library/maintainability)
 
 ## API
 ### render
@@ -41,7 +42,7 @@ afterEach(() => {
 ## Demo
 
 ### Component
-```riotjs
+```html
 <app>
   <p data-testid="count">{ state.count }</p>
   <button data-testid="button" onclick={add}>button</button>
