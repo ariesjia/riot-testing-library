@@ -30,8 +30,11 @@
 
 ### cleanup
 Unmounts the component from the container and destroys the container.
+
 `cleanup()` is called after each test automatically by default if the testing framework you're using supports the afterEach global (like mocha, Jest, and Jasmine).
-However, you may choose to skip the auto cleanup by setting the RIOT_TL_SKIP_AUTO_CLEANUP env variable to 'true'.
+
+However, you may choose to skip the auto cleanup by setting the `RIOT_TL_SKIP_AUTO_CLEANUP` env variable to 'true'.
+
 To make this even easier, you can also simply import `riot-testing-library/dont-cleanup-after-each` which will do the same thing.
 
 ### also export all api from [@testing-library/dom](https://testing-library.com/docs/dom-testing-library/intro)
