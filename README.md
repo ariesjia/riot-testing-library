@@ -75,7 +75,7 @@ test('should show count text  when rendered', () => {
   expect(queryByTestId('count').textContent).toBe("10");
 })
 
-test('should add count when click add button text', async () => {
+test('should add count when click add button text', () => {
     const { queryByTestId } = render(TestTag, {count: 1});
     expect(queryByTestId('count').textContent).toBe("1");
     fireEvent.click(queryByTestId('button'))
