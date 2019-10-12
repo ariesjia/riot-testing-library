@@ -1,9 +1,5 @@
-import render, { cleanup, fireEvent } from '../src/index'
+import render, { fireEvent } from '../src/index'
 import hello from './test.tag'
-
-afterEach(() => {
-  cleanup()
-})
 
 describe("riot-testing-library", () => {
   it('should render tag component and return dom query', () => {
