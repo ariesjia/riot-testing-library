@@ -35,6 +35,7 @@ jobs:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   release:
     needs: [build]
+    runs-on: ubuntu-latest
     steps:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1.0.2
