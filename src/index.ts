@@ -56,14 +56,6 @@ export const cleanup = () => {
   mountedContainers.forEach(cleanupAtContainer)
 }
 
-export function act(fn) {
-  const returnValue = fn()
-  if (returnValue !== undefined && typeof returnValue.then === 'function') {
-    return returnValue
-  }
-  return Promise.resolve()
-}
-
 export default render
 
 export * from '@testing-library/dom'
