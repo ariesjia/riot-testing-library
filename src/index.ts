@@ -36,7 +36,7 @@ export const render = (Component, {
         component.unmount(true);
       }
       const newComponent = ui(target, options);
-      mountedContainers.set(target, { target, component: newComponent, x: 1 })
+      mountedContainers.set(target, { target, component: newComponent })
       component = newComponent
     },
     ...getQueriesForElement(target),
